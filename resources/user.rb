@@ -21,3 +21,8 @@ actions :create, :enable, :delete
 attribute :password, :kind_of => String
 attribute :exists, :default => false
 attribute :disabled, :default => false
+
+def initialize(*args)
+  super
+  @action = :create
+end
