@@ -21,10 +21,9 @@ users = nil
 shares = data_bag_item("samba", "shares")
 
 shares["shares"].each do |k,v|
-  if v.has_key?("path")
-    directory v["path"] do
-      recursive true
-    end
+  directory v["path"] do
+    recursive true
+    only_if { v.has_key?("path") }
   end
 end
 
