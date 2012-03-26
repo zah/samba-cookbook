@@ -29,7 +29,11 @@ shares["shares"].each do |k,v|
 end
 
 unless node["samba"]["passdb_backend"] =~ /^ldapsam/
-  users = search("users", "*:*")
+  if Chef::Config[:solo]
+    Chef::Log.warn("This recipe uses search. Chef Solo does not support search.")
+  else
+    users = search("users", "*:*")
+  end
 end
 
 package value_for_platform(
