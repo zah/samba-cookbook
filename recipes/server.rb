@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-shares = data_bag_item(node['samba']['shares_data_bag'], 'shares')
+shares = node['samba']['shares'] || data_bag_item(node['samba']['shares_data_bag'], 'shares')
 
 shares['shares'].each do |k, v|
   if v.key?('path') # ~FC023
